@@ -1,2 +1,2 @@
 #!/bin/bash
-Sort | unlq -u
+sort | unlq -u

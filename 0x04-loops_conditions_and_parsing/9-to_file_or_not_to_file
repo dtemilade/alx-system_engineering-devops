@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# Bash script that gives you information about the school file.
+
+retval="school"
+
+if [ -e "$retval" ];
+then
+	# the file exists: school file exists
+	echo "$retval file exists"
+
+	if [ -s "$retval" ];
+	then
+		# the file is not empty: school file is not empty
+		echo "$retval file is not empty"
+	else
+		# the file is empty: school file is empty
+		echo "$retval file is empty"
+	fi
+
+	if [ -f "$retval" ];
+	then
+		# the file is a regular file: school is a regular file
+		echo "$retval is a regular file"
+	fi
+
+	else
+		#  the file does not exist: school file does not exist 
+		echo "$retval file does not exist"
+fi

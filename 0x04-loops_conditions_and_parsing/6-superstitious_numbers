@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Bash script that displays Best School 10 times.
+
+x=1
+# the while loop
+while [ $x -lt 21 ]
+do
+	echo "$x"
+	# the case statement
+	case $x in
+		4) echo "bad luck from China" ;;
+		9) echo "bad luck from Japan" ;;
+		17) echo "bad luck from Italy" ;;
+	esac
+	((x++))
+done

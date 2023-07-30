@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Bash script and killing it with ctrl+c
+
+echo $$ >> /var/run/myscript.pid
+while true
+do
+	echo 'To infinity and beyond'
+	sleep 2
+done
+
+signal_msg()
+{
+	rm -f /var/run/myscript.pid
+	exit
+}
+
+trap "echo 'I hate the kill command'; signal_msg" SIGTERM
+trap "echo 'I hate the kill command'; signal_msg" SIGQUIT
+trap "echo 'Y U no love me?!'" SIGINT

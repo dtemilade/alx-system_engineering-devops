@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Script that displays all active IPv4 IPs on the machine it’s executed on.
+
+cp /etc/hosts hosts_tmp
+sed -i s/127.*$/127.0.0.2
+cp -f hosts_tmp /etc/hosts

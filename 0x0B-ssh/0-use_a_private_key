@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 # Bash script that uses ssh to connect to your server using the private key
 
-#establishuing the requirement for connection
-HOST="100.26.155.154"
-USER="ubuntu"
-PRIVATE_KEY="~/.ssh/school"
+ssh -i ~/.ssh/school ubuntu@100.26.155.154
 
-# Connect to the server using SSH
-ssh -l $PRIVATE_KEY $USER@$HOST

@@ -7,7 +7,7 @@ echo "Hello World!" | sudo tee /var/www/html/index.html
 sudo service nginx restart
 
 #redirection process as required
-retval="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4"
-sudo sed -i "s/server_name _;/$retval/" /etc/nginx/sites-available/default
+retval="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4 permanent;"
+sudo sed -i "s/server_name _;/$retval/" /etc/nginx/nginx.conf
 
 sudo service nginx restart

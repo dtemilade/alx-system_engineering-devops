@@ -55,11 +55,15 @@ Include /etc/ssh/sshd_config.d/*.conf
 #IgnoreRhosts yes
 
 # To disable tunneled clear text passwords, change to no here!
-Host 100.26.155.154
-        User ubuntu
-        IdentityFile ~/.ssh/school
-        PreferredAuthentications publickey
-        PasswordAuthentication no
+file { '/etc/ssh/ssh_config':
+  ensure  => file,
+  content => "# SSH client configuration\n
+              Host 100.26.155.154\n
+              \tUser ubuntu\n
+              \tIdentityFile ~/.ssh/school\n
+              \tPreferredAuthentications publickey\n
+              \tPasswordAuthentication no\n",
+}
 
 # Change to yes to enable challenge-response passwords (beware issues with
 # some PAM modules and threads)

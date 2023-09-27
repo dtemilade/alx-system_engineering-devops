@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Bash script that install and redirect to another page
+
+sudo apt-get -y update
+sudo apt-get -y install nginx
+echo "Hello World!" | sudo tee /var/www/html/index.html
+sudo service nginx restart
+
+#redirection process as required
+retval="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4 permanent;"
+sudo sed -i "s/server_name _;/$retval/" /etc/nginx/sites-available/default
+
+str_val="Ceci n'est pas une page\n"
+echo -e "$str_val" | sudo tee /var/www/html/404_error.html
+
+str_val="server_name _;\n\terror_page 404 \/404_error.html;\n\tlocation = \/404_error.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
+sudo sed -i "s/server_name _;/$str_val/" /etc/nginx/sites-available/default
+
+sudo service nginx restart

@@ -1,13 +1,11 @@
 #!/usr/bin/env bash
 # Bash script that install and redirect to another page
 
-sudo apt-get -y update
-sudo apt-get -y install nginx
-echo "Hello World!" | sudo tee /var/www/html/index.html
-sudo service nginx restart
+sudo apt-get -y update;
+sudo apt-get -y install nginx;
 
-#redirection process as required
-retval="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4 permanent;"
-sudo sed -i "s/server_name _;/$retval/" /etc/nginx/nginx.conf
+echo "Hello World!" | sudo tee /var/www/html/index.html;
 
+redir_str="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4 permanent;";
+sudo sed -i "s/server_name _;/$redir_str/" /etc/nginx/sites-available/default;
 sudo service nginx restart

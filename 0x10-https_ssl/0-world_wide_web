@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# Bash script to Configure domain zone with subdomain www pointed to load-balancer IP
+
+# fetching information about a subdomain using print_funct
+print_funct ()
+{
+	RECORD_TYPE=$(dig "$SUB_DOMAIN"."$1" | awk '/ANSWER SECTION:/ { getline; print $4 }')
+	DESTINATION=$(dig "$2"."$1" | awk '/ANSWER SECTION:/ { getline; print $5 }')
+	echo "The subdomain $SUB_DOMAIN is a $RECORD_TYPE record and points to $DESTINATION"
+	return 0
+}
+
+# calling print_funct for the subdomains os available server
+dig_funct ()
+{
+	if [ "$2" ]
+	then
+	SUB_DOMAIN="$2"
+	print_funct "$1" "$SUB_DOMAIN"
+	return 0
+	fi
+
+	SUB_DOMAIN="www"
+	print_funct "$1" $SUB_DOMAIN
+
+	SUB_DOMAIN="lb-01"
+	print_funct "$1" $SUB_DOMAIN
+
+	SUB_DOMAIN="web-01"
+	print_funct "$1" $SUB_DOMAIN
+
+	SUB_DOMAIN="web-02"
+	print_funct "$1" $SUB_DOMAIN
+}
+
+# conditional statement for the script
+if ! [ "$2" ]
+then
+	dig_funct "$1"
+else
+	dig_funct "$1" "$2"
+fi

@@ -2,9 +2,5 @@
 # Bash script that uses ssh to connect to your server using the private key
 
 # establishing the requirement
-# p_key="-i ~/.ssh/school"
-# my_host="100.26.155.154"
-
-# ssh $p_key "ubuntu@$my_host"
-
-ssh -i ~/.ssh/school
+p_key="-i ~/.ssh/school"
+ssh ubuntu $p_key

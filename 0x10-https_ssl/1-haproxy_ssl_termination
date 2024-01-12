@@ -35,13 +35,13 @@ defaults
 
 
 frontend spiritlife.tech-http-frontend
-	bind	 *:80
+	bind*:80
 	http-request set-header X-Forwarded-Proto http
 	default_backend	 spiritlife.tech-backend
 
 
 frontend  spiritlife.tech-https-frontend
-	bind *:443 ssl crt /etc/ssl/spiritlife.tech.pem
+	bind*:443 ssl crt /etc/ssl/spiritlife.tech.pem
 	http-request set-header X-Forwarded-Proto https
         default_backend spiritlife.tech-backend
 

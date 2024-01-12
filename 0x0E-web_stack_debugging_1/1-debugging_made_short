@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-#Short fix&sweet: configure a server running, and listening on port 80 of other
-sudo sed -i "s/8080/80/" /etc/nginx/sites-enabled/default
-sudo killall nginx
-sudo service nginx restart
+# Short fix&sweet:Configure a server running and listening on port 80 of other
+sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
+pkill -1 nginx

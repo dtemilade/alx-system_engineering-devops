@@ -2,20 +2,31 @@
 # shellcheck disable=SC2154
 # Bash script that configure Nginx for HTTP response with a custom header
 
-sudo apt-get -y update
-sudo apt-get -y install nginx
-echo "Hello World!" | sudo tee /var/www/html/index.html
+apt-get update
+apt-get install -y nginx
 
-redi_str="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4 permanent;"
-sudo sed -i "s/server_name _;/$redi_str/" /etc/nginx/sites-available/default
+mkdir -p /var/www/html
+touch /var/www/html/index.html
+echo "Hello World" > /var/www/html/index.html
+touch /var/www/html/404.html
+echo "Ceci n'est pas une page" > /var/www/html/404.html
 
-error_str="Ceci n'est pas une page\n"
-echo -e "$error_str" | sudo tee /var/www/html/404_error.html
+printf %s "server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    add_header X-Served-By $HOSTNAME;
+    root   /var/www/html;
+    index  index.html index.htm;
 
-error_str="server_name _;\n\terror_page 404 \/404_error.html;\n\tlocation = \/404_error.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
-sudo sed -i "s/server_name _;/$error_str/" /etc/nginx/sites-available/default
+    location /redirect_me {
+        return 301 http://google.com/;
+    }
 
-header_str="location \/ {\n\t\tadd_header X-Served-By \$hostname;"
-sudo sed -i "s/location \/ {/$header_str/" /etc/nginx/sites-available/default
+    error_page 404 /404.html;
+    location /404 {
+      root /var/www/html;
+      internal;
+    }
+}" > /etc/nginx/sites-available/default
 
-sudo service nginx restart
+service nginx restart

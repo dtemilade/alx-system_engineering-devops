@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#Short fix&sweet: configure a server running, and listening on port 80 of other
-sudo sed -i "s/8080/80/" /etc/nginx/sites-enabled/default
-sudo killall nginx
+# Short fix&sweet:Configure a server running and listening on port 80 of other
+sed -i "s/8080/80/" /etc/nginx/sites-enabled/default
 sudo service nginx restart
+kill -9 "$(cat /var/run/nginx.pid)"

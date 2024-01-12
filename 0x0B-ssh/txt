@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
 # Bash script that uses ssh to connect to your server using the private key
 
+# prevent permission denied 
+eval $("ssh-agent")
+
 #establishuing the requirement for connection
-HOST="100.26.155.154"
+HOST="35.168.2.211"
 USER="ubuntu"
 PRIVATE_KEY="~/.ssh/school"
 
+ssh-add $PRIVATE_KEY
+
 # Connect to the server using SSH
-ssh $PRIVATE_KEY $USER@$HOST
+ssh $USER@$HOST

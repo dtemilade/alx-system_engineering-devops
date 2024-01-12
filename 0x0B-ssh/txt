@@ -4,12 +4,7 @@
 # prevent permission denied 
 eval $("ssh-agent")
 
-#establishuing the requirement for connection
-HOST="35.168.2.211"
-USER="ubuntu"
-PRIVATE_KEY="~/.ssh/school"
-
-ssh-add $PRIVATE_KEY
+ssh-add ~/.ssh/school
 
 # Connect to the server using SSH
-ssh $USER@$HOST
+ssh ubuntu@35.168.2.211

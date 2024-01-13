@@ -1,4 +1,4 @@
-# a custom HTTP header response with Puppet.
+# Puppet for a custom HTTP header response.
 
 exec {'header':
 	provider    => shell,

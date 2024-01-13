@@ -1,15 +1,14 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC2154
-# Bash script that configure Nginx for HTTP response with a custom header
+# Bash script to configures a brand new Ubuntu machine to the requirements
 
-apt-get update
-apt-get install -y nginx
+sudo apt-get update
+sudo apt-get install -y nginx
 
-mkdir -p /var/www/html
-touch /var/www/html/index.html
-echo "Hello World" > /var/www/html/index.html
-touch /var/www/html/404.html
-echo "Ceci n'est pas une page" > /var/www/html/404.html
+sudo mkdir -p /var/www/html
+sudo touch /var/www/html/index.html
+sudo echo "Hello World!" > /var/www/html/index.html
+sudo touch /var/www/html/404.html
+sudo echo "Ceci n'est pas une page" > /var/www/html/404.html
 
 printf %s "server {
     listen 80 default_server;
@@ -17,11 +16,9 @@ printf %s "server {
     add_header X-Served-By $HOSTNAME;
     root   /var/www/html;
     index  index.html index.htm;
-
     location /redirect_me {
-        return 301 http://google.com/;
+        return 301 http://cuberule.com/;
     }
-
     error_page 404 /404.html;
     location /404 {
       root /var/www/html;
@@ -29,4 +26,4 @@ printf %s "server {
     }
 }" > /etc/nginx/sites-available/default
 
-service nginx restart
+sudo service nginx restart

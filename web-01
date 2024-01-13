@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Bash script that uses ssh to connect to your server using the private key
+
+# prevent permission denied 
+eval $("ssh-agent")
+
+ssh-add ~/.ssh/school
+
+# Connect to the server using SSH
+ssh ubuntu@100.26.167.240

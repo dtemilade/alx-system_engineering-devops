@@ -48,5 +48,5 @@ frontend  spiritlife.tech-https-frontend
 
 backend spiritlife.tech-backend
         balance roundrobin
-        server 330970-web-01 35.168.2.211:80 check
-        server 330970-web-02 34.207.58.222:80 check
+        server 330970-web-01 100.26.167.240:80 check
+        server 330970-web-02 3.83.227.79:80 check

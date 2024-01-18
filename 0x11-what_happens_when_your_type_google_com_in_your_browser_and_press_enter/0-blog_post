@@ -1,0 +1,21 @@
+WHAT HAPPENS WHEN YOU TYPE GOOGLE.COM IN YOUR BROWSER AND PRESS ENTER?
+
+Have you ever wondered what happens behind the scenes when you visit the Google website on your browser? The speed of your internet connection and your choice of browser often take the spotlight. However, the process of sending a request and receiving feedback involves a series of crucial steps that collectively ensure a seamless user experience.
+
+The journey kicks off with a DNS Request. The Domain Name System (DNS) is a service that translates human-readable domain names, like "www.google.com," into IP addresses. Your browser initiates this process, and the DNS server responds with the IP address associated with the requested domain.
+
+Following the DNS Request, a Transmission Control Protocol (TCP) connection is established between your computer and the IP address of the Google server. TCP ensures reliable data delivery, while IP handles addressing and routing, forming fundamental protocols for data transmission over the Internet.
+
+The request passes through a Firewall, acting as a security barrier that monitors and controls incoming and outgoing network traffic based on predetermined security rules. This safeguard protects your system from unauthorized access by inspecting outgoing connection requests and allowing or blocking them based on predefined rules.
+
+Now, enter HTTPS/SSL encryption. HTTPS, a secure version of HTTP, employs SSL to encrypt data exchanged between your browser and the server. This encryption ensures the confidentiality and integrity of the data, preventing interception by third parties.
+
+Google utilizes load balancers to distribute incoming network traffic across multiple servers, optimizing resource utilization, enhancing reliability, and preventing server overload. The load balancer forwards your request to one of the available web servers.
+
+A web server, defined as software handling incoming requests, processes them, and delivers web pages to users. For Google, this involves handling search queries and generating search results pages. The web server sends the requested content back to your browser.
+
+In more complex scenarios, an application server may come into play. Google's application servers could manage intricate functionalities such as search algorithms and personalized content, generating data for the web server's delivery to your browser.
+
+If data retrieval from a database is required, the application server communicates with the database server, which stores and manages structured data. The database server returns the requested data to the application server, incorporating it into the web page content.
+
+In summary, typing "https://www.google.com" triggers a complex series of interactions involving DNS resolution, network protocols, security measures, load balancing, web servers, application servers, and potentially databases. Together, these components collaborate to deliver the requested web page seamlessly to your browser.

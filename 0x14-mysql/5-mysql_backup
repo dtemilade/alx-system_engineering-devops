@@ -1,3 +1,8 @@
-rt all databases to backup.sql //mysqldump -u [username] -p [database name] > [database name].sql
+#!/usr/bin/env bash
+# backup and compress my databases
 sudo mysqldump -u root "$1" --all-databases > backup.sql
-tar -czvf "$(date +%d-%m-%Y).tar.gz" backup.sql
+day=$(date +"%d")
+month=$(date +"%m")
+year=$(date +"%Y")
+file_name="$day-$month-$year.tar.gz"
+tar -czvf "$file_name" backup.sql

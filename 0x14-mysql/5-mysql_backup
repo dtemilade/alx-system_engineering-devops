@@ -1,0 +1,3 @@
+rt all databases to backup.sql //mysqldump -u [username] -p [database name] > [database name].sql
+sudo mysqldump -u root "$1" --all-databases > backup.sql
+tar -czvf "$(date +%d-%m-%Y).tar.gz" backup.sql
